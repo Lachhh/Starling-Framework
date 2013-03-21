@@ -1,4 +1,4 @@
-Starling Framework: the GPU powered 2D Flash API
+Stefan Starling Framework: the GPU powered 2D Flash API
 ================================================
 
 What is Starling?
