@@ -3,6 +3,12 @@ Starling Framework: the GPU powered 2D Flash API
 
 Performance update
 -----------------
+Try to optimize the Starling Framework performance. 
+* Stop broadcasting the enter frame event (Stage.as)
+* Splitting the vertex data into 3 vectors (Position, color and texture coordinates)  (VertexData.as and QuadBatch.as)
+* Combining the copy vertex data and the transform vertex data in 1 function call (Image.as, Quad.as and QuadBatch.as)
+
+
 
 What is Starling?
 -----------------
