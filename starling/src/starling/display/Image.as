@@ -11,6 +11,7 @@
 package starling.display
 {
     import flash.display.Bitmap;
+    import flash.geom.Matrix;
     import flash.geom.Point;
     import flash.geom.Rectangle;
     
@@ -130,6 +131,18 @@ package starling.display
             
             mVertexDataCache.copyTo(targetData, targetVertexID);
         }
+		
+		public override function copyVertexDataToAndTransformVertex(targetData:VertexData, targetVertexID:int, matrix : Matrix):void
+		{
+			if (mVertexDataCacheInvalid)
+			{
+				mVertexDataCacheInvalid = false;
+				mVertexData.copyTo(mVertexDataCache);
+				mTexture.adjustVertexData(mVertexDataCache, 0, 4);
+			}
+			
+			mVertexDataCache.copyToAndTransformVertex(targetData, targetVertexID,matrix);
+		}
         
         /** The texture that is displayed on the quad. */
         public function get texture():Texture { return mTexture; }

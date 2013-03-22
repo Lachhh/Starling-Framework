@@ -159,6 +159,13 @@ package starling.display
         {
             mVertexData.copyTo(targetData, targetVertexID);
         }
+		
+		/** Copies the raw vertex data to a VertexData instance 
+		 * and transforms the position of the vertices by multiplication with a transformation matrix.*/
+		public function copyVertexDataToAndTransformVertex(targetData:VertexData, targetVertexID:int, matrix : Matrix):void
+		{
+			mVertexData.copyToAndTransformVertex(targetData, targetVertexID,matrix);
+		}
         
         /** @inheritDoc */
         public override function render(support:RenderSupport, parentAlpha:Number):void

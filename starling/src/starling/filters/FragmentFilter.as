@@ -112,6 +112,8 @@ package starling.filters
          *  This constructor may only be called by the constructor of a subclass. */
         public function FragmentFilter(numPasses:int=1, resolution:Number=1.0)
         {
+			throw Error("filters not working in this version. See changes in VertextData.as");
+			
             if (Capabilities.isDebugger && 
                 getQualifiedClassName(this) == "starling.filters::FragmentFilter")
             {
@@ -334,7 +336,7 @@ package starling.filters
                 mIndexBuffer.uploadFromVector(mIndexData, 0, 6);
             }
             
-            mVertexBuffer.uploadFromVector(mVertexData.rawData, 0, 4);
+            mVertexBuffer.uploadFromVector(mVertexData.rawPostionData, 0, 4);
         }
         
         private function updatePassTextures(width:int, height:int, scale:Number):void

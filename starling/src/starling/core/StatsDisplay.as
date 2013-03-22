@@ -15,16 +15,16 @@ package starling.core
     import starling.display.BlendMode;
     import starling.display.Quad;
     import starling.display.Sprite;
-    import starling.events.EnterFrameEvent;
     import starling.events.Event;
     import starling.text.BitmapFont;
     import starling.text.TextField;
     import starling.utils.HAlign;
     import starling.utils.VAlign;
+	import starling.animation.IAnimatable;
     
     /** A small, lightweight box that displays the current framerate, memory consumption and
      *  the number of draw calls per frame. The display is updated automatically once per frame. */
-    internal class StatsDisplay extends Sprite
+    internal class StatsDisplay extends Sprite implements IAnimatable
     {
         private var mBackground:Quad;
         private var mTextField:TextField;
@@ -56,19 +56,20 @@ package starling.core
         
         private function onAddedToStage():void
         {
-            addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			Starling.juggler.add(this);
             mTotalTime = mFrameCount = 0;
             update();
         }
         
         private function onRemovedFromStage():void
         {
-            removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+			Starling.juggler.remove(this);
         }
         
-        private function onEnterFrame(event:EnterFrameEvent):void
+		
+        public function advanceTime(time:Number):void
         {
-            mTotalTime += event.passedTime;
+            mTotalTime += time;
             mFrameCount++;
             
             if (mTotalTime > 1.0)
