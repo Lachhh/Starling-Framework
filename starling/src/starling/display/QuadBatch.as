@@ -326,7 +326,8 @@ package starling.display
 			if (modelViewMatrix == null)
 				modelViewMatrix = quad.transformationMatrix;
 			
-			var tinted:Boolean = texture ? (quad.tinted || parentAlpha != 1.0) : false;
+//			var tinted:Boolean = texture ? (quad.tinted || parentAlpha != 1.0) : false;
+			var tinted:Boolean = (quad.tinted || parentAlpha != 1.0);
 			var alpha:Number = parentAlpha * quad.alpha;
 			var vertexID:int = mNumQuads * 4;
 			
@@ -393,7 +394,8 @@ package starling.display
 		{
 			if (mNumQuads == 0) return false;
 			else if (mNumQuads + numQuads > 8192) return true; // maximum buffer size
-			else if (mTexture == null && texture == null) return false;
+			else if (texture == null) 
+				return mTinted != (tinted || parentAlpha != 1.0);
 			else if (mTexture != null && texture != null)
 				return mTexture.base != texture.base ||
 					mTexture.repeat != texture.repeat ||
